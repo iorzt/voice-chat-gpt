@@ -29,7 +29,7 @@ def conversation_reply():
     print("Student: " + text)
 
     prompt = "%s\n%s" % (prompt_prefix, text)
-    reply = open_ai.generate(prompt)
+    reply = open_ai.generate(prompt_prefix, prompt)
     print("Teacher: " + reply)
     player.play_audio(tts.tts(reply))
 
