@@ -1,5 +1,5 @@
 # Voice-Chat-GPT
-chat with CHatGPT(LLM) by VOICE on your laptop(MacOS)
+chat with ChatGPT(LLM) by VOICE on your laptop(MacOS)
 
 ## ENV
 + set up OpenAI key 
