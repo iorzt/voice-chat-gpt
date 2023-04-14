@@ -1,5 +1,6 @@
 from abc import abstractmethod
 
+import openai
 import requests
 import speech_recognition
 
@@ -10,6 +11,7 @@ class SpeechToText:
     def speech_to_text(self, file_path, language):
         pass
 
+
 class OpenAIWhisper(SpeechToText):
 
     def speech_to_text(self, file_path, language):
@@ -17,7 +19,7 @@ class OpenAIWhisper(SpeechToText):
             response = requests.post(
                 'https://api.openai.com/v1/audio/transcriptions',
                 headers={
-                    'Authorization': '' # TODO
+                    'Authorization': openai.api_key
                 },
                 files={
                     "file": (f.name, f),
@@ -29,7 +31,6 @@ class OpenAIWhisper(SpeechToText):
 
 
 class SpeechRecognition(SpeechToText):
-
     recognizer = speech_recognition.Recognizer()
     lan_dict = {
         'zh': 'zh-CN'
@@ -38,13 +39,8 @@ class SpeechRecognition(SpeechToText):
     def speech_to_text(self, file_path, language):
         audio_file = speech_recognition.AudioFile(file_path)
 
-
         with audio_file as source:
             audio_data = self.recognizer.record(source)
 
         text = self.recognizer.recognize_google(audio_data, language=self.lan_dict.get(language, language))
         return text
-
-
-
-

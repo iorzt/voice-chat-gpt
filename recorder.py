@@ -6,7 +6,7 @@ class LocalRecorder:
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
     RATE = 44100
-    RECORD_SECONDS = 6 # record duration
+    RECORD_SECONDS = 10 # record duration
     OUTPUT_FILE = "output.wav"
 
     audio = pyaudio.PyAudio()
